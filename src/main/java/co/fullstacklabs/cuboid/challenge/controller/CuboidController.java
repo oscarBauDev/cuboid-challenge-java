@@ -39,4 +39,15 @@ public class CuboidController {
         return service.getAll();
     }
 
-}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CuboidDTO> update(@PathVariable Long id, @RequestBody @Valid CuboidDTO cuboidDTO){
+        CuboidDTO cuboid = service.update(id, cuboidDTO);
+        return new ResponseEntity<>(cuboid, HttpStatus.OK);
+    }
+ }
